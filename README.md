@@ -1,6 +1,4 @@
-# eliane_noivas_mobile
-
-# Nome do Aplicativo
+# Desenvolvimento de aplicativo móvel para gestão de aluguéis de trajes de festa
 
 ## Descrição
 Este é um aplicativo desenvolvido como parte da disciplina de **Desenvolvimento de Dispositivos Móveis**. O projeto foi implementado utilizando a linguagem **Flutter** e segue padrões de projeto como **DAO (Data Access Object)** e **Orientação a Testes**. O aplicativo foi projetado para ser modular, testável e facilmente escalável.
