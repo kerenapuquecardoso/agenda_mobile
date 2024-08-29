@@ -1,16 +1,23 @@
 # eliane_noivas_mobile
 
-A new Flutter project.
+# Nome do Aplicativo
 
-## Getting Started
+## Descrição
+Este é um aplicativo desenvolvido como parte da disciplina de **Desenvolvimento de Dispositivos Móveis**. O projeto foi implementado utilizando a linguagem **Flutter** e segue padrões de projeto como **DAO (Data Access Object)** e **Orientação a Testes**. O aplicativo foi projetado para ser modular, testável e facilmente escalável.
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
+- **Cadastro de Usuários:** Permite o cadastro de novos usuários no sistema.
+- **Autenticação:** Implementação de login e autenticação de usuários.
+- **Gestão de Dados:** Utilização do padrão DAO para acessar e gerenciar dados de forma eficiente.
+- **Testes Automatizados:** Cobertura de testes unitários e de integração para garantir a confiabilidade do código.
 
-A few resources to get you started if this is your first Flutter project:
+## Configuração do Ambiente de Desenvolvimento
+1. **Pré-requisitos**:
+   - Flutter SDK: [Instalar Flutter](https://flutter.dev/docs/get-started/install)
+   - Dart SDK: Incluído com o Flutter.
+   - Editor de código recomendado: [Visual Studio Code](https://code.visualstudio.com/)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. **Instalação**:
+   Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
