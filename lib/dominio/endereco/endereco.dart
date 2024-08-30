@@ -1,8 +1,8 @@
 import 'cidade.dart';
 class Endereco {
-  final String rua;
-  final int numero;
-  final Cidade cidade;
+  late String rua;
+  late int numero;
+  late Cidade cidade;
 
   Endereco({
     required this.rua,
