@@ -1,6 +1,9 @@
 class DtoEstado{
-  late String nome;
-  late  String sigla;
+  dynamic? id;
+  String nome;
+  String sigla;
+  String status;
 
-  DtoEstado({required this.nome, required this.sigla});
+  DtoEstado({this.id, required this.nome, required this.sigla, required this.status});
 }
+

@@ -1,12 +1,14 @@
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cidade.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_endereco.dart';
 
 class DtoCliente{
-  late dynamic? id;
-  late String nome;
-  late String CPF;
-  late dynamic telefone;
-  late DtoEndereco endereco;
+  dynamic? id;
+  String nome;
+  String CPF;
+  String telefone;
+  String rua;
+  int numero;
+  dynamic cidade_id;
+  String status;
 
-  DtoCliente({this.id, required this.nome, required this.CPF, required this.telefone,  required this.endereco});
+  DtoCliente({this.id, required this.nome, required this.CPF, required this.telefone,  required this.rua, required this.numero, required this.cidade_id, required this.status});
 }

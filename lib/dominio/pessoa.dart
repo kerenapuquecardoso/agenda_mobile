@@ -1,13 +1,16 @@
-import 'package:eliane_noivas_mobile/dominio/cpf.dart' as validador;
-import 'package:eliane_noivas_mobile/dominio/endereco/endereco.dart';
 
 class Pessoa{
-  late dynamic? id;
-  late String nome;
-  late String CPF;
-  late Endereco endereco;
+  dynamic? id;
+  String? nome;
+  String? cpf;
 
   //gerar getter e setter para os atributos
-  Pessoa({this.id,required this.nome, required this.endereco, required this.CPF});
-
+  Pessoa(){
+    id = id;
+    nome = nome ?? '';
+    this.cpf = cpf;
+  }
+  eNomeNaoVazio(){
+    if(nome!.isEmpty) throw Exception('Nome não pode ser vazio');
+  }
 }

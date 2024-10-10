@@ -2,10 +2,11 @@ import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
 
 abstract class IDAOCliente{
 
-  DtoCliente salvar(DtoCliente dto);
-  DtoCliente buscarPorId(dynamic id);
-  List<DtoCliente> buscarTodos();
-  DtoCliente deletarPorId(dynamic id);
-  DtoCliente alterarPorId(dynamic id, DtoCliente dto);
+  Future<DtoCliente> salvar(DtoCliente dto);
+  Future<DtoCliente> buscarPorId(int id);
+  Future<List<DtoCliente>> buscarTodos();
+  Future<bool> alterarStatus(int id);
+  Future<DtoCliente> alterar(DtoCliente dto);
+  
 
 }
