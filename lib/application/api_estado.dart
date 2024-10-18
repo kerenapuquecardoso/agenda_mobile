@@ -6,7 +6,7 @@ import 'package:eliane_noivas_mobile/dominio/interface/IDAOEstado.dart';
 
 class ApiEstado{
   late Estado estado;
-  late IDAOEstado dao;
+  late DaoEstado dao;
 
   ApiEstado(){
     dao = DaoEstado();

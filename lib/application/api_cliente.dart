@@ -7,7 +7,7 @@ import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 
 class ApiCliente{
   late Cliente cliente;
-  late IDAOCliente dao;
+  late DaoCliente dao;
 
   ApiCliente(){
     dao = DaoCliente();

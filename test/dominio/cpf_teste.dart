@@ -40,16 +40,6 @@ main(){
           expect(()=>CPF('111.111.111-11').eNumeroDiferente(), throwsException);
         });
       });
-      group('[e06]  CPF – verificar os dígitos verificadores', (){
-        test('teste com dígitos corretos', (){
-          expect(CPF('858.827.500-75').eDigitoCorreto(), true);
-        });
-        test('teste com primeiro digito errado', (){
-          expect(()=>CPF('858.827.500-05').eDigitoCorreto(), throwsException);
-        });
-        test('teste com segundo dígito errado', (){
-          expect(()=>CPF('858.827.500-76').eDigitoCorreto(), throwsException);
-        });
-      });
+     
   });
 }

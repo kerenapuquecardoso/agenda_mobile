@@ -1,91 +1,142 @@
-import 'package:eliane_noivas_mobile/banco/sqlite/dao_cliente.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_cidade.dart';
+import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_endereco.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_estado.dart';
+import 'package:eliane_noivas_mobile/dominio/cliente.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class DAOClienteMock implements DaoCliente{
-  Map<int, DtoCliente> databaseMock = {};
+
+class MockDAOCliente implements IDAOCliente {
   @override
-  DtoCliente alterarPorId(id, DtoCliente dto) {
-    // TODO: implement alterarPorId
-    throw UnimplementedError();
+  Future<DtoCliente> salvar(DtoCliente dto) async {
+    return dto; 
   }
 
   @override
-  DtoCliente buscarPorId(id) {
-    // TODO: implement buscarPorId
-    throw UnimplementedError();
+  Future<DtoCliente> alterar(DtoCliente dto) async {
+    return dto; 
   }
 
   @override
-  List<DtoCliente> buscarTodos() {
-    // TODO: implement buscarTodos
-    throw UnimplementedError();
+  Future<bool> alterarStatus(dynamic id) async {
+    return true; 
   }
 
   @override
-  DtoCliente deletarPorId(id) {
-    // TODO: implement deletarPorId
-    throw UnimplementedError();
+  Future<DtoCliente> buscarPorId(dynamic id) async {
+    return DtoCliente(
+        id: id,
+        nome: 'Nome Teste',
+        CPF: '123.456.789-09',
+        telefone: '(44) 99999-9999',
+        rua: 'Rua Teste',
+        numero: 1,
+        cidade_id: 1,
+        status: 'A');
   }
 
   @override
-  Future<DtoCliente> salvar(DtoCliente dto) async{
-    if (dto.id == null || dto.id == 0) {
-      throw Exception('ID inválido para o cliente.');
-    }
-    databaseMock[dto.id!] = dto;
-    return dto;
+  Future<List<DtoCliente>> buscarTodos() async {
+    return [DtoCliente(
+        id: 1,
+        nome: 'Nome Teste',
+        CPF: '123.456.789-09',
+        telefone: '(44) 99999-9999',
+        rua: 'Rua Teste',
+        numero: 1,
+        cidade_id: 1,
+        status: 'A')];
   }
-
- 
 }
 
-
 void main() {
-  group('Cliente', (){
-    var dtoEndereco = DtoEndereco(
-        rua: 'Rua ABC',
-        numero: 123,
-        cidade: DtoCidade(
-          nome: 'Cidade XYZ',
-          estado: DtoEstado(nome: 'Estado PR', sigla: 'PR'),
-      ),
-    );
+  group('Testes para a classe Cliente', () {
+    late Cliente cliente;
+    late MockDAOCliente mockDAOCliente;
 
-    var dtoCliente = DtoCliente(
-      id: 1,
-      nome: 'João',
-      CPF: '123.456.789-00',
-      telefone: '999999999',
-      endereco: dtoEndereco,
-    );
-
-    var clienteIdInvalido = DtoCliente(
-      id: 0,
-      nome: 'Maria',
-      CPF: '987.654.321-00',
-      telefone: '888888888',
-      endereco: dtoEndereco,
-    );
-    
-    var dao = DAOClienteMock();
-
-    group('[CA030] - o sistema deverá ser capaz de: criar, atualizar, ler e deletar um cliente.', (){
-        test('salvar com id válido', () async {
-          expect(await()=> dao.salvar(dtoCliente), returnsNormally);
-        });
-
-        test('salvar com id inválido', () async {
-          expect(await()=> dao.salvar(clienteIdInvalido), throwsException);
-        });
-
+    setUp(() {
+      mockDAOCliente = MockDAOCliente();
+      cliente = Cliente(dao: mockDAOCliente);
     });
 
-      
-  });      
- 
-   
+    test('Deve validar e salvar um cliente corretamente', () async {
+      var dtoCliente = DtoCliente(
+        id: 1,
+        nome: 'João Silva',
+        CPF: '123.456.789-09',
+        telefone: '(44) 99999-9999',
+        rua: 'Rua Principal',
+        numero: 123,
+        cidade_id: 1,
+        status: 'A',
+      );
+
+      var result = await cliente.salvar(dtoCliente);
+
+      expect(result.nome, equals('João Silva'));
+      expect(result.CPF, equals('123.456.789-09'));
+      expect(result.telefone, equals('(44) 99999-9999'));
+    });
+
+    test('Deve lançar exceção se o telefone for inválido', () {
+      var dtoCliente = DtoCliente(
+        id: 1,
+        nome: 'João Silva',
+        CPF: '123.456.789-09',
+        telefone: '9999-9999', 
+        rua: 'Rua Principal',
+        numero: 123,
+        cidade_id: 1,
+        status: 'A',
+      );
+
+      expect(() => cliente.validar(dto: dtoCliente), throwsException);
+    });
+
+
+    test('Deve alterar um cliente corretamente', () async {
+      var dtoCliente = DtoCliente(
+        id: 1,
+        nome: 'Maria Oliveira',
+        CPF: '987.654.321-00',
+        telefone: '(44) 98888-8888',
+        rua: 'Rua Secundária',
+        numero: 456,
+        cidade_id: 2,
+        status: 'I',
+      );
+
+      var result = await cliente.alterar(dtoCliente);
+
+      expect(result.nome, equals('Maria Oliveira'));
+      expect(result.status, equals('I'));
+    });
+
+    test('Deve lançar exceção se o status for inválido', () {
+      var dtoCliente = DtoCliente(
+        id: 1,
+        nome: 'Ana Pereira',
+        CPF: '123.456.789-09',
+        telefone: '(44) 99999-9999',
+        rua: 'Rua Nova',
+        numero: 321,
+        cidade_id: 3,
+        status: 'X', 
+      );
+
+      expect(() => cliente.validar(dto: dtoCliente), throwsException);
+    });
+
+    test('Deve buscar cliente por ID corretamente', () async {
+      var result = await cliente.buscarPorId(1);
+
+      expect(result.id, equals(1));
+      expect(result.nome, equals('Nome Teste'));
+    });
+
+    test('Deve buscar todos os clientes corretamente', () async {
+      var result = await cliente.buscarTodos();
+
+      expect(result.length, greaterThan(0));
+      expect(result[0].nome, equals('Nome Teste'));
+    });
+  });
 }

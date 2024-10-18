@@ -35,10 +35,7 @@ class DaoCliente implements IDAOCliente{
   ''';
 
   final sqlGetAll = '''
-    SELECT cliente.*, cidade.*, estado.* 
-    FROM cliente 
-    JOIN cidade ON cliente.cidade_id = cidade.id
-    JOIN estado ON cidade.estado_id = estado.id
+    SELECT * FROM cliente 
   ''';
  
 
@@ -74,33 +71,19 @@ class DaoCliente implements IDAOCliente{
   @override
   Future<List<DtoCliente>> buscarTodos() async {
     _db = await Conexao.abrir();
-    var listaClientes = await _db.rawQuery(sqlGetAll);
-    List<DtoCliente>  clientes =  List.generate(listaClientes.length, (i) {
-      var linha = listaClientes[i];
-      DtoEstado estado = DtoEstado(
-        nome: linha['estado_nome'].toString(),
-        sigla: linha['sigla'].toString(),
-        status: linha['estado_status'].toString(),
-      );
-
-      DtoCidade cidade = DtoCidade(
-        id_estado: estado.id,
-        nome: linha['cidade_nome'].toString(),
-        status: linha['cidade_status'].toString(),
-      );
-
-      DtoCliente cliente = DtoCliente(
-        nome: linha['cliente_nome'].toString(),
-        CPF: linha['cpf'].toString(),
-        telefone: linha['telefone'].toString(),
-        rua: linha['rua'].toString(),
-        numero: int.parse(linha['numero'].toString()),
-        cidade_id: cidade.id,
-        status: linha['cliente_status'].toString(),
-      );
-      return cliente;
+    return _db.rawQuery(sqlGetAll).then((value) {
+      return value.map((e) => DtoCliente(
+        id: e['id'],
+        nome: e['cliente_nome'] as String, 
+        telefone: e['telefone'] as String, 
+        rua:  e['rua'] as String,
+        numero:  e['numero'] as int,
+        cidade_id: e['cidade_id'] ,
+        status:  e['cliente_status'] as String,
+        CPF: e['cpf'] as String
+      )).toList();
     });
-    return clientes;
+   
   }
   
   

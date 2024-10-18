@@ -11,7 +11,7 @@ import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 
 class ApiCidade{
   late Cidade cidade;
-  late IDAOCidade dao;
+  late DaoCidade dao;
 
   ApiCidade(){
     dao = DaoCidade();

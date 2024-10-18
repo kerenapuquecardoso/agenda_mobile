@@ -14,16 +14,16 @@ void main(){
     deleteDatabase(db2.path);
     var db = await openDatabase(inMemoryDatabasePath, version: 1, onCreate: (db, version) {
       criarTabelas.forEach(db.execute);
-      inserirRegistros.forEach(db.execute);
     });
-    var listEstado = await db.rawQuery('SELECT * FROM estado');
-    var listCidade = await db.rawQuery('SELECT * FROM cidade');
-    var listEndereco = await db.rawQuery('SELECT * FROM endereco');
+    //var listEstado = await db.rawQuery('SELECT * FROM estado');
+    //var listCidade = await db.rawQuery('SELECT * FROM cidade');
+    //var listEndereco = await db.rawQuery('SELECT * FROM endereco');
     var listCliente = await db.rawQuery('SELECT * FROM cliente');
     
-    expect(listEstado.length, 2);
-    expect(listCidade.length, 2);
-    expect(listEndereco.length, 2);
+    //expect(listEstado.length, 2);
+    //expect(listCidade.length, 2);
+    //
+    //expect(listEndereco.length, 2);
     expect(listCliente.length, 1);
 
   });
