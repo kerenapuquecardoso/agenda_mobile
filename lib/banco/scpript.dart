@@ -10,6 +10,8 @@ const criarTabelas = {
       cliente_status CHAR(1) NOT NULL,
       cidade_id INTEGER  
     );
+
+    
   '''
 };
 

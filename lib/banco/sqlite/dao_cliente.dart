@@ -4,7 +4,6 @@ import 'dart:ffi';
 import 'package:eliane_noivas_mobile/banco/sqlite/conexao.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cidade.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_estado.dart';
 import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -47,13 +46,12 @@ class DaoCliente implements IDAOCliente{
     return dto;
   }
 
-  
+  /*
   @override
   Future<DtoCliente> buscarPorId(int id) async{
     _db = await Conexao.abrir();
     var dadosCliente = (await _db.rawQuery(sqlGetById,[id])).first;
-    DtoEstado estado = DtoEstado(nome: dadosCliente['estado_nome'].toString(), sigla: dadosCliente['sigla'].toString(), status: dadosCliente['estado_status'].toString());
-    DtoCidade cidade = DtoCidade(id_estado: estado.id , nome: dadosCliente['cidade_nome'].toString(), status: dadosCliente['cidade_status'].toString());
+    DtoCidade cidade = DtoCidade(estado:  , nome: dadosCliente['cidade_nome'].toString(), status: dadosCliente['cidade_status'].toString());
     DtoCliente cliente = DtoCliente(
       nome: dadosCliente['cliente_nome'].toString(), 
       CPF: dadosCliente['cpf'].toString(), 
@@ -66,7 +64,7 @@ class DaoCliente implements IDAOCliente{
     );
 
     return cliente;
-  }
+  }*/
   
   @override
   Future<List<DtoCliente>> buscarTodos() async {
@@ -99,6 +97,12 @@ class DaoCliente implements IDAOCliente{
     _db = await Conexao.abrir();
     await _db.rawUpdate(sqlUpdate, [dto.nome, dto.CPF, dto.cidade_id, dto.numero, dto.rua, dto.status, dto.id]);
     return dto;
+  }
+  
+  @override
+  Future<DtoCliente> buscarPorId(int id) {
+    // TODO: implement buscarPorId
+    throw UnimplementedError();
   }
 
 }

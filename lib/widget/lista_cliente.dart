@@ -3,13 +3,31 @@ import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
 import 'package:flutter/material.dart';
 import 'package:eliane_noivas_mobile/rotas.dart';
 
-class ListaCliente extends StatelessWidget {
-
+class ListaCliente extends StatefulWidget {
   ListaCliente({super.key});
 
-  Future<List<DtoCliente>> buscarTodos() async{
+  @override
+  _ListaClienteState createState() => _ListaClienteState();
+}
+
+class _ListaClienteState extends State<ListaCliente> {
+  late Future<List<DtoCliente>> futureClientes;
+
+  @override
+  void initState() {
+    super.initState();
+    futureClientes = buscarTodos(); // Chama a função ao iniciar o widget
+  }
+
+  Future<List<DtoCliente>> buscarTodos() async {
     ApiCliente apiCliente = ApiCliente();
     return await apiCliente.buscarTodos();
+  }
+
+  void atualizarLista() {
+    setState(() {
+      futureClientes = buscarTodos(); // Atualiza o Future
+    });
   }
 
   @override
@@ -20,17 +38,21 @@ class ListaCliente extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Rotas.formCliente); 
-            }, 
+              Navigator.pushNamed(context, Rotas.formCliente);
+            },
             icon: const Icon(Icons.add),
-          )
+          ),
+          IconButton(
+            onPressed: atualizarLista, // Botão para atualizar a lista
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
       body: Column(
         children: [
           Expanded(
             child: FutureBuilder<List<DtoCliente>>(
-              future: buscarTodos(),
+              future: futureClientes,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());

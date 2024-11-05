@@ -1,6 +1,5 @@
-
+import 'package:eliane_noivas_mobile/banco/sqlite/dao_cliente.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
-import 'package:eliane_noivas_mobile/dominio/endereco/cidade.dart';
 import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 import 'package:eliane_noivas_mobile/dominio/pessoa.dart';
 import 'package:eliane_noivas_mobile/dominio/cpf.dart' as validador;
@@ -92,7 +91,4 @@ class Cliente extends Pessoa{
     if(status != 'A' && status != 'I') throw Exception('Status deve ser "A" ou "I".');
     _status = status;
   }
-
-
-
 }
