@@ -2,6 +2,7 @@ import 'package:eliane_noivas_mobile/rotas.dart';
 import 'package:eliane_noivas_mobile/widget/form_cliente.dart';
 import 'package:eliane_noivas_mobile/widget/lista_cliente.dart';
 import 'package:eliane_noivas_mobile/widget/detalhes_cliente.dart';
+import 'package:eliane_noivas_mobile/widget/login.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget{
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget{
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.purple),
       routes: {
-        Rotas.home: (context) => ListaCliente(),
+        Rotas.home: (context) => LoginPage(),
         Rotas.formCliente : (context) => FormCliente(),
         Rotas.detalhesCliente : (context) => DetalhesCliente()
       }
