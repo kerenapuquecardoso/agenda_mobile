@@ -1,8 +1,5 @@
-
 import 'dart:ffi';
-
 import 'package:eliane_noivas_mobile/banco/sqlite/conexao.dart';
-import 'package:eliane_noivas_mobile/dominio/dto/dto_cidade.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
 import 'package:eliane_noivas_mobile/dominio/interface/IDAOCliente.dart';
 import 'package:sqflite/sqflite.dart';

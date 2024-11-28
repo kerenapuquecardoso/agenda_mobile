@@ -1,5 +1,8 @@
 import 'package:eliane_noivas_mobile/rotas.dart';
+import 'package:eliane_noivas_mobile/widget/cadastro_funcionario.dart';
+import 'package:eliane_noivas_mobile/widget/cadastro_traje.dart';
 import 'package:eliane_noivas_mobile/widget/form_cliente.dart';
+import 'package:eliane_noivas_mobile/widget/home.dart';
 import 'package:eliane_noivas_mobile/widget/lista_cliente.dart';
 import 'package:eliane_noivas_mobile/widget/detalhes_cliente.dart';
 import 'package:eliane_noivas_mobile/widget/login.dart';
@@ -17,7 +20,11 @@ class MyApp extends StatelessWidget{
       routes: {
         Rotas.home: (context) => LoginPage(),
         Rotas.formCliente : (context) => FormCliente(),
-        Rotas.detalhesCliente : (context) => DetalhesCliente()
+        Rotas.detalhesCliente : (context) => DetalhesCliente(),
+        Rotas.listaCliente : (context) => ListaCliente(),
+        Rotas.cadastroFuncionario : (context) => FormFuncionario(),
+        Rotas.homePage : (context) => HomeScreen(),
+        Rotas.cadastroTraje : (context) => CadastroTraje(),
       }
 
     );

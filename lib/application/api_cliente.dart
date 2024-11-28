@@ -1,5 +1,3 @@
-
-
 import 'package:eliane_noivas_mobile/banco/sqlite/dao_cliente.dart';
 import 'package:eliane_noivas_mobile/dominio/cliente.dart';
 import 'package:eliane_noivas_mobile/dominio/dto/dto_cliente.dart';
@@ -34,6 +32,4 @@ class ApiCliente{
   Future<List<DtoCliente>> buscarTodos() async{
     return await cliente.buscarTodos();
   }
-
-
 }

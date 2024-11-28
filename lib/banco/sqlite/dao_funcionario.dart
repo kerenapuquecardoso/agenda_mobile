@@ -5,6 +5,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DaoFuncionario implements IDAOFuncionario{
   late Database _db;
+
   final sqlInserirFuncionario = '''
     INSERT INTO funcionario (funcionario_nome,  cpf, senha, funcionario_status)
     VALUES (?,?,?,?)

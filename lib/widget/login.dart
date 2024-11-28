@@ -1,3 +1,4 @@
+import 'package:eliane_noivas_mobile/rotas.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'email',
+                labelText: 'cpf',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -52,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Remember Me'),
+                Text('lembrar da minha senha'),
                 Switch(
                   value: _rememberMe,
                   onChanged: (value) {
@@ -65,16 +66,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {
-                // Add login logic
-              },
+              onPressed: () => Navigator.pushNamed(context, Rotas.homePage),
               child: Text('Login'),
             ),
             TextButton(
-              onPressed: () {
-                // Add navigate to register page logic
-              },
-              child: Text('Don\'t não tem conta? cadastre-se'),
+              onPressed:  () => Navigator.pushNamed(context, Rotas.cadastroFuncionario),
+              child: Text('Não tem conta? cadastre-se'),
             ),
           ],
         ),

@@ -24,6 +24,18 @@ class _ListaClienteState extends State<ListaCliente> {
     return await apiCliente.buscarTodos();
   }
 
+  Future<void> excluirCliente(int id) async {
+    ApiCliente apiCliente = ApiCliente();
+    await apiCliente.deletar(id);
+    atualizarLista();
+  }
+
+  Future<void> editarCliente(DtoCliente cliente) async {
+    ApiCliente apiCliente = ApiCliente();
+    await apiCliente.alterar(cliente);
+    atualizarLista();
+  }
+
   void atualizarLista() {
     setState(() {
       futureClientes = buscarTodos(); // Atualiza o Future
@@ -69,6 +81,27 @@ class _ListaClienteState extends State<ListaCliente> {
                       return ListTile(
                         leading: Icon(Icons.person),
                         title: Text(cliente.nome),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  Rotas.formCliente,
+                                  arguments: cliente,
+                                );
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () async {
+                                await excluirCliente(cliente.id);
+                              },
+                            ),
+                          ],
+                        ),
                       );
                     },
                   );
